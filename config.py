@@ -6,20 +6,20 @@ ARCHS = ['i386', 'amd64']
 SECTIONS = ('main', 'universe', 'multiverse', 'restricted')
 
 DISTS = [
-    'warty', 'breezy', 'dapper', 'edgy', 'feisty', 'gutsy', 'hardy', 'hoary',
+    'warty', 'hoary', 'breezy', 'dapper', 'edgy', 'feisty', 'gutsy', 'hardy',
     'intrepid', 'jaunty', 'karmic', 'lucid', 'maverick', 'natty', 'oneiric',
     'precise', 'quantal', 'raring'
 ]
 
 REPOS = {
     'warty': 'old',
+    'hoary': 'old',
     'breezy': 'old',
     'dapper': 'old',
     'edgy': 'old',
     'feisty': 'old',
     'gutsy': 'old',
     'hardy': 'current',
-    'hoary': 'old',
     'intrepid': 'old',
     'jaunty': 'old',
     'karmic': 'old',
