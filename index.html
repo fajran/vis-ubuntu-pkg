@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html><head>
+<style type="text/css">
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300);
+
+body {
+  font-family: Ubuntu, Arial, sans-serif;
+  margin: 4em;
+}
+
+</style>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="out/data.js"></script>
+<script type="text/javascript">
+
+google.load('visualization', '1.0', {'packages':['corechart']});
+google.setOnLoadCallback(draw);
+
+function groupSize(data) {
+  var f = data.clone();
+  for (var i=0; i<f.getNumberOfRows(); i++) {
+    for (var j=1; j<=4; j++) {
+      var value = f.getValue(i, j);
+      var mb = value / 1024 / 1024;
+      f.setValue(i, j, mb);
+      f.setFormattedValue(i, j, parseInt(mb).toString() + ' MB')
+    }
+  }
+  return f;
+}
+
+function draw() {
+  var data = getData();
+
+  new google.visualization.ColumnChart(document.getElementById('package-i386')).
+      draw(data['packages']['i386'],
+               {width: 800,
+                height: 400,
+                vAxis: {title: "Packages"},
+                hAxis: {title: "Releases"},
+                isStacked: true}
+          );
+
+  new google.visualization.ColumnChart(document.getElementById('size-i386')).
+      draw(groupSize(data['sizes']['i386']),
+           {width: 800,
+            height: 400,
+            vAxis: {title: "Size", format: "#,### MB"},
+            hAxis: {title: "Releases"},
+            isStacked: true}
+      );
+
+  new google.visualization.ColumnChart(document.getElementById('package-amd64')).
+      draw(data['packages']['amd64'],
+           {width: 800,
+            height: 400,
+            vAxis: {title: "Packages"},
+            hAxis: {title: "Releases"},
+            isStacked: true}
+      );
+
+  new google.visualization.ColumnChart(document.getElementById('size-amd64')).
+      draw(groupSize(data['sizes']['amd64']),
+           {width: 800,
+            height: 400,
+            vAxis: {title: "Size", format: "#,### MB"},
+            hAxis: {title: "Releases"},
+            isStacked: true}
+      );
+
+}
+
+document.onload = function() {
+  start();
+}
+
+</script>
+</head><body>
+
+<h1>Ubuntu Repository: Packages and Sizes</h1>
+
+<h2>i386</h2>
+
+<h3>Total Packages</h3>
+<div id="package-i386"></div>
+
+<h3>Total Package Size</h3>
+<div id="size-i386"></div>
+
+<h2>amd64</h2>
+
+<h3>Total Packages</h3>
+<div id="package-amd64"></div>
+
+<h3>Total Package Size</h3>
+<div id="size-amd64"></div>
+
+</body></html>
+
