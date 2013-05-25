@@ -1,3 +1,4 @@
+function getData() {
 var data = {};
 data["packages"] = {};
 data["packages"]["i386"] = google.visualization.arrayToDataTable([
@@ -85,3 +86,5 @@ data["sizes"]["amd64"] = google.visualization.arrayToDataTable([
   ["quantal", 9100094648, 36992314310, 3960801470, 414518810],
   ["raring", 9760015024, 41326889282, 4218569508, 535947052],
 ]);
+return data;
+}

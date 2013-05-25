@@ -49,9 +49,12 @@ def visualize_size(data):
         print 'data["sizes"]["%s"] = %s' % (arch, table[arch])
 
 def visualize(data):
+    print 'function getData() {'
     print 'var data = {};'
     visualize_packages(data)
     visualize_size(data)
+    print 'return data;'
+    print '}'
 
 def main():
     inp = sys.argv[1]
