@@ -8,6 +8,9 @@ import config
 def create_table(data):
     code = {}
     for arch in data:
+        if not arch in data:
+            continue
+
         out = []
 
         a = out.append
@@ -20,10 +23,17 @@ def create_table(data):
         a(line)
 
         for dist in config.DISTS:
+            if not dist in data[arch]:
+                continue
+
             line = '  ["%s"' % dist
 
             for section in config.SECTIONS:
-                line += ', %d' % data[arch][dist][section]
+                value = 0
+                if section in data[arch][dist]:
+                    value = data[arch][dist][section]
+
+                line += ', %d' % value
 
             line += '],'
             a(line)

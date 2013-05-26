@@ -24,11 +24,16 @@ def download(dist, section, arch):
     if not os.path.exists(target):
         os.makedirs(target)
 
-    fin = urllib2.urlopen(url)
-    fout = open(path, 'wb')
-    fout.write(fin.read())
-    fout.close()
-    fin.close()
+    try:
+        fin = urllib2.urlopen(url)
+        fout = open(path, 'wb')
+        fout.write(fin.read())
+        fout.close()
+        fin.close()
+
+        return True
+    except urllib2.HTTPError:
+        return False
 
 def main():
     total = len(config.DISTS) * len(config.SECTIONS) * len(config.ARCHS)
@@ -37,11 +42,12 @@ def main():
     for dist in config.DISTS:
         for section in config.SECTIONS:
             for arch in config.ARCHS:
-                download(dist, section, arch)
+                status = download(dist, section, arch)
+                status = status and 'OK' or 'FAIL'
 
                 count += 1
-                print '%s of %s: %s %s %s' % (count, total,
-                                              dist, section, arch)
+                print '%s of %s: %s %s %s -> %s' % \
+                      (count, total, dist, section, arch, status)
 
 if __name__ == '__main__':
     main()

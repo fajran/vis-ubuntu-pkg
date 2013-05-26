@@ -53,6 +53,8 @@ def read_packages(f):
 
 def analyze(dist, section, arch):
     path = get_path(dist, section, arch)
+    if not os.path.exists(path):
+        return None
 
     f = bz2.BZ2File(path)
 
@@ -84,12 +86,16 @@ def collect_data():
             for section in config.SECTIONS:
                 data = analyze(dist, section, arch)
 
-                sizes[arch][dist][section] = data['size']
-                packages[arch][dist][section] = data['count']
+                status = 'FAIL'
+                if data is not None:
+                    sizes[arch][dist][section] = data['size']
+                    packages[arch][dist][section] = data['count']
+
+                    status = 'OK'
 
                 index += 1
-                d('%s of %s: %s %s %s' % (index, total,
-                                          dist, section, arch))
+                d('%s of %s: %s %s %s -> %s' % \
+                  (index, total, dist, section, arch, status))
 
     return dict(sizes=sizes,
                 packages=packages)
