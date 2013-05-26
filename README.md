@@ -28,14 +28,15 @@ First, adjust the list of repositories, archive urls, etc in the `config.py` fil
 
 Then, download all index files
 
-    $ python download.py
+    $ python download.py data/
 
-By default, all indices will be downloaded into `data/` directory.
+The files will be downloaded into the given data directory. In the above
+example, the data directory is `data/`.
 
 After that, run the analysis script to collect all numbers from the index
 files. Put the result into a file so we don't need to do this again.
 
-    $ python analyze.py > out/raw-data.json
+    $ python analyze.py data/ > out/raw-data.json
 
 Once it's ready, run the visualization script to create codes needed to make
 charts using Google Chart API.

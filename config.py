@@ -1,6 +1,4 @@
 
-DOWNLOAD_DIR = 'data'
-
 ARCHS = ['i386', 'amd64']
 
 SECTIONS = ('main', 'universe', 'multiverse', 'restricted')
