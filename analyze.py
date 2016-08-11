@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import sys
-import bz2
+import gzip
 import os
 import json
 
@@ -12,7 +12,7 @@ def d(*msg):
 
 def get_path(data_dir, dist, section, arch):
     return os.path.join(data_dir, dist, section,
-                        'binary-%s' % arch, 'Packages.bz2')
+                        'binary-%s' % arch, 'Packages.gz')
 
 def read_packages(f):
     data = {}
@@ -56,7 +56,7 @@ def analyze(data_dir, dist, section, arch):
     if not os.path.exists(path):
         return None
 
-    f = bz2.BZ2File(path)
+    f = gzip.open(path,'r')
 
     count = 0
     size = 0L

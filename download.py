@@ -8,7 +8,7 @@ import config
 
 def get_url(dist, section, arch):
     repo = config.REPOS[dist]
-    return '%(base)s/dists/%(dist)s/%(section)s/binary-%(arch)s/Packages.bz2' % \
+    return '%(base)s/dists/%(dist)s/%(section)s/binary-%(arch)s/Packages.gz' % \
         dict(base=config.BASE_URLS[repo],
              dist=dist,
              section=section,
@@ -20,7 +20,7 @@ def get_target(data_dir, dist, section, arch):
 def download(dist, section, arch, data_dir):
     url = get_url(dist, section, arch)
     target = get_target(data_dir, dist, section, arch)
-    path = os.path.join(target, 'Packages.bz2')
+    path = os.path.join(target, 'Packages.gz')
 
     if not os.path.exists(target):
         os.makedirs(target)

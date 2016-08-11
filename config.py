@@ -6,7 +6,8 @@ SECTIONS = ('main', 'universe', 'multiverse', 'restricted')
 DISTS = [
     'warty', 'hoary', 'breezy', 'dapper', 'edgy', 'feisty', 'gutsy', 'hardy',
     'intrepid', 'jaunty', 'karmic', 'lucid', 'maverick', 'natty', 'oneiric',
-    'precise', 'quantal', 'raring'
+    'precise', 'quantal', 'raring', 'saucy', 'trusty', 'utopic', 'vivid',
+    'wily', 'xenial', 'yakkety'
 ]
 
 REPOS = {
@@ -17,21 +18,28 @@ REPOS = {
     'edgy': 'old',
     'feisty': 'old',
     'gutsy': 'old',
-    'hardy': 'current',
+    'hardy': 'old',
     'intrepid': 'old',
     'jaunty': 'old',
     'karmic': 'old',
-    'lucid': 'current',
+    'lucid': 'old',
     'maverick': 'old',
-    'natty': 'current',
-    'oneiric': 'current',
+    'natty': 'old',
+    'oneiric': 'old',
     'precise': 'current',
-    'quantal': 'current',
-    'raring': 'current',
+    'quantal': 'old',
+    'raring': 'old',
+    'saucy': 'old',
+    'trusty': 'current',
+    'utopic': 'old',
+    'vivid': 'current',
+    'wily': 'current',
+    'xenial': 'current',
+    'yakkety': 'current',
 }
 
 BASE_URLS = {
-    'current': 'http://archive.ubuntu.com/ubuntu',
+    'current': 'http://id.archive.ubuntu.com/ubuntu',
     'old': 'http://old-releases.ubuntu.com/ubuntu'
 }
 
